@@ -1,0 +1,18 @@
+elasticsearch:
+  image: docker.elastic.co/elasticsearch/elasticsearch:7.17.2
+  replicas: 1
+  password: elasticstack
+  storage: efs-pvc
+
+kibana:
+  image: docker.elastic.co/kibana/kibana:7.17.2
+  nodePort: 30001
+
+logstash:
+  image: docker.elastic.co/logstash/logstash:7.17.2
+
+filebeat:
+  image: docker.elastic.co/beats/filebeat:7.17.2
+  logstashHost: logstash:5044
+
+

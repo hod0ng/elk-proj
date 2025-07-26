@@ -1,0 +1,7 @@
+apiVersion: v2
+name: efk
+description: EFK Stack (Elasticsearch + Fluentd/Filebeat + Kibana) Helm Chart
+version: 0.1.0
+appVersion: "7.17.2"
+
+
