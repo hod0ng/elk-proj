@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logstash-pipeline
+  namespace: logging
+data:
+  logstash.conf: |
+    input {
+      beats {
+        port => 5044
+      }
+    }
+
+    filter {
+      if [kubernetes] {
+        mutate {
+          add_field => {
+            "kubernetes.pod.name" => "%{[kubernetes][pod][name]}"
+            "kubernetes.namespace" => "%{[kubernetes][namespace]}"
+            "kubernetes.container.name" => "%{[kubernetes][container][name]}"
+          }
+        }
+      }
+      json {
+        source => "message"
+        skip_on_invalid_json => true
+      }
+    }
+
+    output {
+      elasticsearch {
+        hosts => ["http://elasticsearch:9200"]
+        index => "logs-%{+YYYY.MM.dd}"
+        user => "elastic"
+        password => "elasticstack"
+      }
+    }
+
+
