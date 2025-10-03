@@ -24,11 +24,14 @@ spec:
         - name: discovery.type
           value: single-node
         - name: ELASTIC_PASSWORD
-          value: {{ .Values.elasticsearch.password }}
+          valueFrom:
+            secretKeyRef:
+              name: elastic-credentials
+              key: password
         - name: xpack.security.enabled
           value: "true"
         - name: xpack.security.transport.ssl.enabled
-          value: "true"
+          value: "false"
         - name: ES_JAVA_OPTS
           value: "-Xms512m -Xmx512m"
         volumeMounts:
