@@ -1,7 +1,6 @@
 elasticsearch:
   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.2
   replicas: 1
-  password: elasticstack
   storage: efs-pvc
 
 kibana:
