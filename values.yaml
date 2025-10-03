@@ -5,7 +5,7 @@ elasticsearch:
 
 kibana:
   image: docker.elastic.co/kibana/kibana:7.17.2
-  nodePort: 30001
+  nodePort: 30050
 
 logstash:
   image: docker.elastic.co/logstash/logstash:7.17.2
