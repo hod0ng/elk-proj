@@ -18,6 +18,17 @@ spec:
         image: {{ .Values.logstash.image }}
         ports:
         - containerPort: 5044
+        env:
+        - name: ES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: elastic-credentials
+              key: username
+        - name: ES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: elastic-credentials
+              key: password
         volumeMounts:
         - name: pipeline-config
           mountPath: /usr/share/logstash/pipeline
