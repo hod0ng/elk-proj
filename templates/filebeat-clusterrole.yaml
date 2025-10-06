@@ -7,6 +7,4 @@ rules:
   resources:
     - pods
     - namespaces
-    - nodes
-    - events
-  verbs: ["get", "watch", "list"]
+  verbs: ["get", "list"]
